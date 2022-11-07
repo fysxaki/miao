@@ -1,27 +1,27 @@
-var fysxaki = function () {
+var fysxaki = function() {
 
   function chunk(array, size = 1) {
     let resultAry = []
     let itemAry = []
     let count = 0
 
-    for (let i = 0; i < array.length; i++) {
-      count++
-      if (count <= size) {
-        itemAry.push(array[i])
-      } else if (count > size) {
-        count = 0
-        resultAry.push(itemAry.slice())
-        itemAry = []
-        itemAry.push(array[i])
-      }
-    }
+        for (let i = 0; i < array.length; i++) {
+          count++
+            if (count <= size) {
+              itemAry.push(array[i])
+            } else if (count > size) {
+              count = 0
+              resultAry.push(itemAry.slice())
+              itemAry = []
+              itemAry.push(array[i])
+            }
+        }
 
-    if (itemAry.length) {
-      resultAry.push(itemAry.slice())
-    }
+        if (itemAry.length) {
+          resultAry.push(itemAry.slice())
+        }
 
-    return resultAry
+        return resultAry
   }
 
   function add(a, b) {
@@ -30,11 +30,14 @@ var fysxaki = function () {
 
   function compact(array) {
     var ary = []
+
     for (let lll of array) {
-      if (lll === false | lll === null | lll === 0 | lll === "" | lll === undefined) { continue }
-      if (!!lll !== lll) {
-        ary.push(lll)//必须放在后面
-      }
+        if (lll === false | lll === null | lll === 0 | lll === "" | lll === undefined)
+        { continue }
+
+        if (!!lll !== lll) {
+          ary.push(lll)//必须放在后面
+        }
     }
     return ary
   }
@@ -65,17 +68,20 @@ var fysxaki = function () {
     var ary = []
 
     if (n == 1) {
-        for (let i = 1; i < array.length; i++) {
-          ary.push(array[i])
-        }
-    } else {
-        for (let i = n; i < array.length; i++) {
-          ary.push(array[i])
-        }
-    }
+
+          for (let i = 1; i < array.length; i++) {
+            ary.push(array[i])
+              }
+
+      } else {
+
+          for (let i = n; i < array.length; i++) {
+            ary.push(array[i])
+          }
+      }
     return ary
   }
-  }
+
 
   function findIndex() { }
 
@@ -101,5 +107,7 @@ var fysxaki = function () {
     flatten,//等会写
     flattenDeep,//等会写
     flattenDepth,//等会写
-  }
+}
+
+
 }()
