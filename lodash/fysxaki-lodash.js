@@ -1,4 +1,4 @@
-var fysxaki = function() {
+var fysxaki = (function() {
 
   function chunk(array, size = 1) {
     let resultAry = []
@@ -110,4 +110,4 @@ var fysxaki = function() {
 }
 
 
-}()
+})()
