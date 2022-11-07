@@ -43,20 +43,20 @@ var fysxaki = function () {
 
     var ary = []
 
-    if (start == 0 && end == array.length)
+    if (start == 0 && end == array.length) {
       for (let i = 0; i < array.length; i++) {
         ary.push(value)
       }
-    else {
-      for (let i = 0; i < start; i++) {
-        ary.push(array[i])
-      }
-      for (let i = start; i < end; i++) {
-        ary.push(value)
-      }
-      for (let i = end; i < array.length; i++) {
-        ary.push(array[i])
-      }
+    } else {
+          for (let i = 0; i < start; i++) {
+            ary.push(array[i])
+          }
+          for (let i = start; i < end; i++) {
+            ary.push(value)
+          }
+          for (let i = end; i < array.length; i++) {
+            ary.push(array[i])
+          }
     }
     return ary
   }
@@ -75,15 +75,15 @@ var fysxaki = function () {
     return ary
   }
 
-  function findIndex(xx) { }
+  function findIndex() { }
 
-  function findLastIndex(xx) { }
+  function findLastIndex() { }
 
-  function flatten(xx) { }
+  function flatten() { }
 
-  function flattenDeep(xx) { }
+  function flattenDeep() { }
 
-  function flattenDepth(xx) { }
+  function flattenDepth() { }
 
 
 
