@@ -64,15 +64,17 @@ var fysxaki = function () {
   function drop(array, n = 1) {
     var ary = []
 
-    if (n == 1)
-      for (let i = 1; i < array.length; i++) {
-        ary.push(array[i])
-      }
-    else
-      for (let i = n; i < array.length; i++) {
-        ary.push(array[i])
-      }
+    if (n == 1) {
+        for (let i = 1; i < array.length; i++) {
+          ary.push(array[i])
+        }
+    } else {
+        for (let i = n; i < array.length; i++) {
+          ary.push(array[i])
+        }
+    }
     return ary
+  }
   }
 
   function findIndex() { }
