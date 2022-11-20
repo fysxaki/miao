@@ -35,7 +35,7 @@ var fysxaki = function() {
         if (item === false | item === null | item === 0 | item === "" | item === undefined)
         { continue }
 
-        if (!!item == item) { // 这个用!!item == item 判断是否NaN,===与==的结果不同,===的结果均为false.
+        if (!isNaN(item)) { // 这个用!!item == item 判断是否NaN,===与==的结果不同,===的结果均为false.
           ary.push(item)//必须放在后面
         }
     }
@@ -93,6 +93,10 @@ var fysxaki = function() {
 
   function flattenDepth() { }
 
+  //辅助函数
+  function isNaN(x) {
+    return x !== x
+  }
 
 
 
@@ -107,6 +111,7 @@ var fysxaki = function() {
     flatten,//等会写
     flattenDeep,//等会写
     flattenDepth,//等会写
+    isNaN,
 }
 
 
