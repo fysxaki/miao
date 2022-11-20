@@ -94,12 +94,16 @@ var fysxaki = function() {
   function flattenDepth() { }
 
   //辅助函数
+
   function isNaN(value) {
-    var n = Number(value);
-    return n !== n;
-  }
-
-
+    if (typeof value === "number") {
+        return (value !== value)
+    } else if ((typeof value === "object") && (value)) {
+        return ((Object.getPrototypeOf(value) === Number.prototype) && (value.toString() === "NaN"))
+    } else {
+        return false
+    }
+}
 
   return {
     add,
