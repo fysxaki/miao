@@ -1,4 +1,4 @@
-var fysxaki = (function() {
+var fysxaki = function() {
 
   function chunk(array, size = 1) {
     let resultAry = []
@@ -31,12 +31,12 @@ var fysxaki = (function() {
   function compact(array) {
     var ary = []
 
-    for (let lll of array) {
-        if (lll === false | lll === null | lll === 0 | lll === "" | lll === undefined)
+    for (let item of array) {
+        if (item === false | item === null | item === 0 | item === "" | item === undefined)
         { continue }
 
-        if (!!lll !== lll) {
-          ary.push(lll)//必须放在后面
+        if (!!item == item) { // 这个用!!item == item 判断是否NaN,===与==的结果不同,===的结果均为false.
+          ary.push(item)//必须放在后面
         }
     }
     return ary
@@ -110,4 +110,4 @@ var fysxaki = (function() {
 }
 
 
-})()
+}()
