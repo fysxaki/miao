@@ -94,8 +94,9 @@ var fysxaki = function() {
   function flattenDepth() { }
 
   //辅助函数
-  function isNaN(x) {
-    return x !== x
+  function isNaN(value) {
+    var n = Number(value);
+    return n !== n;
   }
 
 
