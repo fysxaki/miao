@@ -83,7 +83,56 @@ var fysxaki = function() {
   }
 
 
-  function findIndex() { }
+  function findIndex(array, finder, fromindex = 0) {
+
+    if (typeof finder == 'string') {
+      var originFinder = finder
+      finder = it => it[originFinder]
+    }
+    if (Array.isArray(finder)) { //['user','fred']
+      var originFinder = finder
+      finder = it => it[originFinder[0] === finder[1]]
+    }
+    if (typeof finder == 'object') {
+      var originFinder = finder
+      finder = it => isMatch[it, originFinder]
+    }
+    for (var i = fromindex; i < array.length; i++) {
+      if (finder(array[i])) {
+        return i
+      }
+    }
+      return -1
+  }
+
+  function filter(array, test) {
+    if (typeof finder == 'string') {
+      var originFinder = finder
+      finder = it => it[originFinder]
+    }
+    if (Array.isArray(finder)) { //['user','fred']
+      var originFinder = finder
+      finder = it => it[originFinder[0] === finder[1]]
+    }
+    if (typeof finder == 'object') {
+      var originFinder = finder
+      finder = it => isMatch[it, originFinder]
+    }
+  }
+
+  function isMatch(obj, target) {
+    for (var key in target) {
+      if (key in obj) {
+        if (obj[key] !== target[key]) {
+          return false
+        } else {
+          return false
+        }
+      }
+    }
+    return true
+  }
+
 
   function findLastIndex() { }
 
@@ -116,7 +165,7 @@ var fysxaki = function() {
     flatten,//等会写
     flattenDeep,//等会写
     flattenDepth,//等会写
-    isNaN,
+    isNaN,//只接受数据类型的NaN,其他均为false.
 }
 
 
