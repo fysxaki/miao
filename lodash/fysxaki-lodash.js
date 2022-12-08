@@ -82,41 +82,29 @@ var fysxaki = function() {
     return ary
   }
 
+  function findIndex(array, predicate, fromIndex = 0) {
+    predicate = iteratee(predicate)
 
-  function findIndex(array, finder, fromindex = 0) {
-
-    if (typeof finder == 'string') {
-      var originFinder = finder
-      finder = it => it[originFinder]
-    }
-    if (Array.isArray(finder)) { //['user','fred']
-      var originFinder = finder
-      finder = it => it[originFinder[0] === finder[1]]
-    }
-    if (typeof finder == 'object') {
-      var originFinder = finder
-      finder = it => isMatch[it, originFinder]
-    }
-    for (var i = fromindex; i < array.length; i++) {
-      if (finder(array[i])) {
+    for (var i = fromIndex; i < array.length; i++) {
+      if (predicate(array[i])) {
         return i
       }
     }
-      return -1
+    return -1
   }
 
-  function filter(array, test) {
-    if (typeof finder == 'string') {
-      var originFinder = finder
-      finder = it => it[originFinder]
+  function iteratee(predicate) {
+    if (typeof predicate == 'function') {
+      return predicate
     }
-    if (Array.isArray(finder)) { //['user','fred']
-      var originFinder = finder
-      finder = it => it[originFinder[0] === finder[1]]
+    if (typeof predicate == 'string') {
+      return  property(predicate)
     }
-    if (typeof finder == 'object') {
-      var originFinder = finder
-      finder = it => isMatch[it, originFinder]
+    if (Array.isArray(predicate)) { //['user', 'fred']
+      return  matchesProperty(predicate)
+    }
+    if (typeof predicate == 'object') {
+      return  matches(predicate)
     }
   }
 
@@ -125,24 +113,46 @@ var fysxaki = function() {
       if (key in obj) {
         if (obj[key] !== target[key]) {
           return false
-        } else {
-          return false
         }
+      } else {
+        return false
       }
     }
     return true
   }
 
+  function filter(array, predicate) {
+    predicate = iteratee(predicate)
 
-  function findLastIndex() { }
+    var result = []
+    for (var i = 0; i < array.length; i++) {
+      if (predicate(array[i], i, array)) {
+        result.push(array[i])
+      }
+    }
+    return result
+  }
 
-  function flatten() { }
+  //返回一个获取某对象proName属性的函数
+  function property(propName) {
+    return function (obj) {
+      return obj[propName]
+    }
+  }
 
-  function flattenDeep() { }
+  // 返回一个判断对象[是否匹配pair名值对]的函数
+  function matchesProperty(pair) {
+    var [key, val] = pair
+    return function (obj) {
+      return obj[key] === val
+    }
+  }
 
-  function flattenDepth() { }
-
-  //辅助函数
+  function matches(target) {
+    return function (obj) {
+      return isMatch(obj, target)
+    }
+  }
 
   function isNaN(value) {
     if (typeof value === "number") {
@@ -154,19 +164,31 @@ var fysxaki = function() {
     }
 }
 
+  function findLastIndex() { }
+
+  function flatten() { }
+
+  function flattenDeep() { }
+
+  function flattenDepth() { }
+
   return {
     add,
     compact,//紧凑的
     chunk,//块
     fill,//替换其中的元素
     drop,//是slice的子集
-    findIndex,//等会写
+    findIndex,
+    filter,
+    iteratee,
+    matches,
+    property,
+    matchesProperty,
+    isNaN,//只接受数据类型的NaN,其他均为false.
     findLastIndex,//等会写
     flatten,//等会写
     flattenDeep,//等会写
     flattenDepth,//等会写
-    isNaN,//只接受数据类型的NaN,其他均为false.
 }
-
 
 }()
